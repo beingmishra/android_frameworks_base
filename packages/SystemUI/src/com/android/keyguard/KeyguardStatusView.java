@@ -34,6 +34,7 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ImageView;
 
 import android.hardware.biometrics.BiometricSourceType;
@@ -475,6 +476,14 @@ public class KeyguardStatusView extends GridLayout implements
 		} else if (fingerprintManager.hasEnrolledFingerprints()) { 
 			fpIcon.setVisibility(View.VISIBLE);
 			Log.i ("FluidLSManager", "FP icon: fpcounter=1, Show icon");
+			fpIcon.setClickable(true);
+			fpIcon.setOnClickListener(new View.OnClickListener() {
+			    public void onClick(View v) {
+			    Toast.makeText(mContext,
+	                    R.string.invalid_charger,
+        	            Toast.LENGTH_SHORT).show();
+			    }
+			});
 		} else {
 			Log.w ("FluidLSManager", "FP icon: fpcounter out of range or could not be read! Falling back to Dont show icon");
 		}
